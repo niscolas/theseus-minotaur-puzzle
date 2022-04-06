@@ -132,10 +132,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482077809}
-  - component: {fileID: 482077812}
   - component: {fileID: 482077813}
   - component: {fileID: 482077814}
   - component: {fileID: 482077815}
+  - component: {fileID: 482077816}
+  - component: {fileID: 482077817}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -158,31 +159,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &482077812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 482077808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f1b7d58b03497bad7dd51faa857ab5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _width:
-    _usage: 0
-    _value: 0
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  _height:
-    _usage: 0
-    _value: 0
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  _levelAsset: {fileID: 11400000, guid: c237aa3dd99ff064cae9c1480a0438e1, type: 2}
 --- !u!114 &482077813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,10 +208,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 482077808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3606d8438fc469ca6b29ea9c19e9d40, type: 3}
+  m_Script: {fileID: 11500000, guid: 077e17547632441e875bcee0aeb531a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstaclePrefab: {fileID: 0}
+  _theseusPrefab: {fileID: 2318964897124404948, guid: 218002faad064fe46a8dd69f0cec49ae, type: 3}
+--- !u!114 &482077816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482077808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667fdcf3dfc64c4e946bfbcf47c65893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minotaurPrefab: {fileID: 5076087304274201742, guid: 5d8f94d11008d9c449e33644e5671a17, type: 3}
+--- !u!114 &482077817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482077808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffd91bbe3774814b65215393a4c4553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using TheseusAndTheMinotaur.Map;
 using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Puzzle.Simple
@@ -9,8 +10,8 @@ namespace TheseusAndTheMinotaur.Puzzle.Simple
     internal class PuzzleLevelSO : ScriptableObject
     {
         [SerializeField]
-        private PuzzleLevelRowData[] _rows;
+        private PuzzleLevelData _data;
 
-        public PuzzleLevelRowData[] Rows => _rows;
+        public PuzzleLevelData Data => _data;
     }
 }

@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Map
 {
     internal class TileController : ITile
     {
+        public Vector3 Position => _humbleObject.Position;
+
         public int X
         {
             get => _humbleObject.Humble_X;

@@ -7,5 +7,6 @@ namespace TheseusAndTheMinotaur
         event Action TurnStarted;
         event Action TurnEnded;
         void StartTurn();
+        MoveResult Move(Direction direction);
     }
 }

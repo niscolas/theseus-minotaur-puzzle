@@ -1,4 +1,6 @@
+using System.Linq;
 using TheseusAndTheMinotaur.Common;
+using TheseusAndTheMinotaur.Puzzle.Simple;
 
 namespace TheseusAndTheMinotaur.Map
 {
@@ -15,11 +17,47 @@ namespace TheseusAndTheMinotaur.Map
             set => _humbleObject.Tiles = value;
         }
 
+        private PuzzleLevelData PuzzleLevelData => _humbleObject.PuzzleLevelData;
+
         private readonly IMapHumbleObject _humbleObject;
 
         public MapController(IMapHumbleObject humbleObject)
         {
             _humbleObject = humbleObject;
+        }
+
+        public ITile GetTheseusInitialTile()
+        {
+            for (int i = 0; i < PuzzleLevelData.Rows.Length; i++)
+            {
+                PuzzleLevelRowData row = PuzzleLevelData.Rows[i];
+                for (int j = 0; j < row.Tiles.Length; j++)
+                {
+                    if (row.Tiles[j].IsTheseusInitialTile)
+                    {
+                        return GetTile(i, j);
+                    }
+                }
+            }
+
+            return default;
+        }
+
+        public ITile GetMinotaurInitialTile()
+        {
+            for (int i = 0; i < PuzzleLevelData.Rows.Length; i++)
+            {
+                PuzzleLevelRowData row = PuzzleLevelData.Rows[i];
+                for (int j = 0; j < row.Tiles.Length; j++)
+                {
+                    if (row.Tiles[j].IsMinotaurInitialTile)
+                    {
+                        return GetTile(i, j);
+                    }
+                }
+            }
+
+            return default;
         }
 
         public void Create()

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Map
 {
-    public class MapMB : MonoBehaviour, IMap, IMapHumbleObject
+    internal class MapMB : MonoBehaviour, IMap, IMapHumbleObject
     {
         [SerializeField]
         private IntReference _width;
@@ -26,23 +26,21 @@ namespace TheseusAndTheMinotaur.Map
 
         public ITileFactory TileFactory => _tileFactory;
         public ITile[,] Tiles { get; set; }
+        public PuzzleLevelData PuzzleLevelData => _puzzleLevelAsset.Data;
 
         private MapController _controller;
 
         private void Awake()
         {
             _controller = new MapController(this);
-        }
 
-        private void Start()
-        {
             if (!_puzzleLevelAsset)
             {
                 return;
             }
 
-            _height.Value = _puzzleLevelAsset.Rows.Length;
-            _width.Value = _puzzleLevelAsset.Rows[0].Tiles.Length;
+            _height.Value = PuzzleLevelData.Rows.Length;
+            _width.Value = PuzzleLevelData.Rows[0].Tiles.Length;
 
             Create();
 
@@ -53,6 +51,16 @@ namespace TheseusAndTheMinotaur.Map
                     SetupTile(i, j);
                 }
             }
+        }
+
+        public ITile GetTheseusInitialTile()
+        {
+            return _controller.GetTheseusInitialTile();
+        }
+
+        public ITile GetMinotaurInitialTile()
+        {
+            return _controller.GetMinotaurInitialTile();
         }
 
         public void Create()
@@ -93,7 +101,7 @@ namespace TheseusAndTheMinotaur.Map
         private void SetupTile(int i, int j)
         {
             ITile tile = Tiles[i, j];
-            PuzzleLevelTileData tileData = _puzzleLevelAsset.Rows[i].Tiles[j];
+            PuzzleLevelTileData tileData = PuzzleLevelData.Rows[i].Tiles[j];
 
             if (!tileData.Exists)
             {

@@ -31,11 +31,13 @@ namespace TheseusAndTheMinotaur.Theseus
         public void StartTurn()
         {
             TurnStarted?.Invoke();
+            Movement.ResetMoveCount();
         }
 
-        public void Move(Direction direction)
+        public MoveResult Move(Direction direction)
         {
-            Movement.Move(direction);
+            MoveResult result = Movement.Move(direction);
+            return result;
         }
 
         private void OnExhausted()

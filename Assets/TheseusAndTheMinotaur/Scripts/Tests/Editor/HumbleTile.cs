@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using TheseusAndTheMinotaur.Map;
+using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Tests.Editor
 {
     public class HumbleTile : ITileHumbleObject
     {
+        public Vector3 Position { get; }
         public int X => Humble_X;
         public int Y => Humble_Y;
         public bool IsDisabled { get; }

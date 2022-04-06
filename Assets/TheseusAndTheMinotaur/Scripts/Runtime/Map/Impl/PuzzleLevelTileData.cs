@@ -12,6 +12,13 @@ namespace TheseusAndTheMinotaur.Puzzle.Simple
 
         [ShowIf(nameof(_exists))]
         [SerializeField]
+        private bool _isTheseusInitialTile;
+
+        [SerializeField]
+        private bool _isMinotaurInitialTile;
+
+        [ShowIf(nameof(_exists))]
+        [SerializeField]
         private bool _hasLeftObstacle;
 
         [ShowIf(nameof(_exists))]
@@ -27,6 +34,10 @@ namespace TheseusAndTheMinotaur.Puzzle.Simple
         private bool _hasDownObstacle;
 
         public bool Exists => _exists;
+
+        public bool IsTheseusInitialTile => _isTheseusInitialTile;
+
+        public bool IsMinotaurInitialTile => _isMinotaurInitialTile;
 
         public bool HasLeftObstacle => _hasLeftObstacle;
 

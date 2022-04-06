@@ -27,8 +27,9 @@ namespace TheseusAndTheMinotaur.Map
         [Required, SerializeField]
         private ObstacleMB _downObstacle;
 
+        public Vector3 Position => _cachedTransform.position;
         public int X => Humble_X;
-        public int Y => Humble_X;
+        public int Y => Humble_Y;
         public bool IsDisabled => _isDisabled;
 
         public IMap ParentMap => Humble_ParentMap;
@@ -53,9 +54,11 @@ namespace TheseusAndTheMinotaur.Map
         public IDictionary<Direction, IObstacle> Obstacles { get; } = new Dictionary<Direction, IObstacle>();
 
         private TileController _controller;
+        private Transform _cachedTransform;
 
         private void Awake()
         {
+            _cachedTransform = transform;
             _controller = new TileController(this);
             Obstacles[Direction.Left] = _leftObstacle;
             Obstacles[Direction.Right] = _rightObstacle;

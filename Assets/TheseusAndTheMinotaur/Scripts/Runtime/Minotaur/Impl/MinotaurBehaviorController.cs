@@ -28,7 +28,10 @@ namespace TheseusAndTheMinotaur.Minotaur
             Movement.GotExhausted -= OnExhausted;
         }
 
-        public void StartTurn() { }
+        public void StartTurn()
+        {
+            Movement.ResetMoveCount();
+        }
 
         public MoveResult? ChaseTheseus()
         {

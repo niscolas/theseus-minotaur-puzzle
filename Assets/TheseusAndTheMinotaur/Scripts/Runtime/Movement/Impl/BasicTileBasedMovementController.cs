@@ -50,7 +50,7 @@ namespace TheseusAndTheMinotaur.Movement
 
         private void OnMoveSuccessful(ITile currentTile, ITile newTile)
         {
-            Entity.CurrentTile = newTile;
+            Entity.SetCurrentTile(newTile);
 
             currentTile.UnlinkEntity(Entity);
             newTile.AddEntity(Entity);
@@ -104,7 +104,7 @@ namespace TheseusAndTheMinotaur.Movement
 
         private bool CheckCanMoveToDirection(Direction direction)
         {
-            bool result = Entity.CurrentTile.CheckIsObstacleOfDirectionActive(direction);
+            bool result = !Entity.CurrentTile.CheckIsObstacleOfDirectionActive(direction);
             return result;
         }
     }

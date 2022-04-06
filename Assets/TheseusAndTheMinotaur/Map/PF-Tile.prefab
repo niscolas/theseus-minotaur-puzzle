@@ -52,8 +52,8 @@ MonoBehaviour:
   _x: 0
   _y: 0
   _isDisabled: 0
-  _leftObstacle: {fileID: 731169356748673224}
-  _rightObstacle: {fileID: 3103103498808585684}
+  _leftObstacle: {fileID: 3103103498808585684}
+  _rightObstacle: {fileID: 731169356748673224}
   _upObstacle: {fileID: 3010865384736944245}
   _downObstacle: {fileID: 5675397950839681979}
 --- !u!1 &6818941320022562073
