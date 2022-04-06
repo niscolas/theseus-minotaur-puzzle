@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Movement
 {
-    internal class BasicTileBasedMovement : ITileBasedMovement
+    internal class BasicTileBasedMovementController : ITileBasedMovement
     {
         public event Action GotExhausted;
 
-        public int MaxMoveCount => _humbleObject.MaxMoveCount;
-        public int CurrentMoveCountLeft => _humbleObject.Humble_MoveCountLeft;
+        public int MaxMoveCount => _humbleObject.Humble_MaxMoveCountLeft;
+        public int CurrentMoveCountLeft => _humbleObject.Humble_CurrentMoveCountLeft;
         public IGameEntity Entity => _humbleObject.Entity;
 
         private readonly ITileBasedMovementHumbleObject _humbleObject;
 
-        public BasicTileBasedMovement(ITileBasedMovementHumbleObject humbleObject)
+        public BasicTileBasedMovementController(ITileBasedMovementHumbleObject humbleObject)
         {
             _humbleObject = humbleObject;
         }
@@ -52,8 +52,8 @@ namespace TheseusAndTheMinotaur.Movement
         {
             Entity.CurrentTile = newTile;
 
-            currentTile.UnlinkCurrentEntity();
-            newTile.LinkEntity(Entity);
+            currentTile.UnlinkEntity(Entity);
+            newTile.AddEntity(Entity);
 
             SetMoveCount(CurrentMoveCountLeft - 1);
             NotifyIfExhausted();
@@ -77,7 +77,7 @@ namespace TheseusAndTheMinotaur.Movement
         private void SetMoveCount(int value)
         {
             value = Mathf.Clamp(value, 0, MaxMoveCount);
-            _humbleObject.Humble_MoveCountLeft = value;
+            _humbleObject.Humble_CurrentMoveCountLeft = value;
         }
 
         private bool CheckIsExhausted()

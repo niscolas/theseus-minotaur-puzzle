@@ -6,6 +6,6 @@ namespace TheseusAndTheMinotaur
     {
         event Action TurnEnded;
         void StartTurn();
-        MoveResult? Move();
+        MoveResult? ChaseTheseus();
     }
 }

@@ -42,19 +42,19 @@ namespace TheseusAndTheMinotaur.Common
             switch (direction)
             {
                 case Direction.Left:
-                    xOffset = -1;
-                    break;
-
-                case Direction.Right:
-                    xOffset = +1;
-                    break;
-
-                case Direction.Up:
                     yOffset = -1;
                     break;
 
-                case Direction.Down:
+                case Direction.Right:
                     yOffset = +1;
+                    break;
+
+                case Direction.Up:
+                    xOffset = -1;
+                    break;
+
+                case Direction.Down:
+                    xOffset = +1;
                     break;
             }
         }

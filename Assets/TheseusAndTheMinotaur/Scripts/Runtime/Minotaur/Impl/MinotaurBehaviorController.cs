@@ -30,20 +30,31 @@ namespace TheseusAndTheMinotaur.Minotaur
 
         public void StartTurn() { }
 
-
-        public MoveResult? Move()
+        public MoveResult? ChaseTheseus()
         {
             bool isInSameColumnAsTheseus =
                 Minotaur.CurrentTile.Y == Theseus.CurrentTile.Y;
 
-            MoveResult? moveResult;
-            if (!isInSameColumnAsTheseus)
+            bool isInSameRowAsTheseus =
+                Minotaur.CurrentTile.X == Theseus.CurrentTile.X;
+
+            MoveResult? moveResult = null;
+            if (isInSameColumnAsTheseus && isInSameRowAsTheseus)
+            {
+                EndTurn();
+            }
+            else if (!isInSameColumnAsTheseus)
             {
                 moveResult = OnNotSameColumnAsTheseus();
             }
             else
             {
                 moveResult = OnSameColumnAsTheseus();
+            }
+
+            if (moveResult != null && CheckShouldEndTurn(moveResult.Value))
+            {
+                EndTurn();
             }
 
             return moveResult;
@@ -73,11 +84,6 @@ namespace TheseusAndTheMinotaur.Minotaur
             }
 
             MoveResult moveResult = Movement.Move(direction.Value);
-
-            if (CheckShouldEndTurn(moveResult))
-            {
-                EndTurn();
-            }
 
             return moveResult;
         }

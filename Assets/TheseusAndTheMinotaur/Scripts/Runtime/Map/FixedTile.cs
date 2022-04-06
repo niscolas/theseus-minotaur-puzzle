@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheseusAndTheMinotaur.Map
 {
@@ -8,10 +9,12 @@ namespace TheseusAndTheMinotaur.Map
         public int Y { get; }
         public IMap ParentMap { get; }
 
-        public IGameEntity Entity { get; private set; }
+        public IEnumerable<IGameEntity> PlacedEntities => PlacedEntitiesList;
 
-        public IDictionary<Direction, IObstacle> Obstacles =
+        private readonly IDictionary<Direction, IObstacle> Obstacles =
             new Dictionary<Direction, IObstacle>();
+
+        private readonly IList<IGameEntity> PlacedEntitiesList = new List<IGameEntity>();
 
         public FixedTile(int x, int y, IMap parentMap)
         {
@@ -20,14 +23,24 @@ namespace TheseusAndTheMinotaur.Map
             ParentMap = parentMap;
         }
 
-        public void LinkEntity(IGameEntity entity)
+        public void AddEntity(IGameEntity entity)
         {
-            Entity = entity;
+            if (PlacedEntitiesList.Contains(entity))
+            {
+                return;
+            }
+
+            PlacedEntitiesList.Add(entity);
         }
 
-        public void UnlinkCurrentEntity()
+        public void UnlinkEntity(IGameEntity entity)
         {
-            Entity = default;
+            if (!PlacedEntities.Contains(entity))
+            {
+                return;
+            }
+
+            PlacedEntitiesList.Remove(entity);
         }
 
         public void AddObstacle(IObstacle obstacle, Direction direction)

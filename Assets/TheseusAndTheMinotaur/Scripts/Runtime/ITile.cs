@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TheseusAndTheMinotaur
 {
     public interface ITile
@@ -5,10 +7,10 @@ namespace TheseusAndTheMinotaur
         int X { get; }
         int Y { get; }
         IMap ParentMap { get; }
-        IGameEntity Entity { get; }
+        IEnumerable<IGameEntity> PlacedEntities { get; }
 
-        void LinkEntity(IGameEntity entity);
-        void UnlinkCurrentEntity();
+        void AddEntity(IGameEntity entity);
+        void UnlinkEntity(IGameEntity entity);
         void AddObstacle(IObstacle obstacle, Direction direction);
         bool CheckIsDirectionFree(Direction direction);
     }

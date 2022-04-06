@@ -41,7 +41,7 @@ namespace TheseusAndTheMinotaur.Tests.Editor
                 .FromInstance(movementHumbleObjectSub)
                 .AsSingle();
 
-            BasicTileBasedMovement movement = new BasicTileBasedMovement(movementHumbleObjectSub);
+            BasicTileBasedMovementController movement = new BasicTileBasedMovementController(movementHumbleObjectSub);
 
             Container
                 .Bind<ITileBasedMovement>()
@@ -58,10 +58,10 @@ namespace TheseusAndTheMinotaur.Tests.Editor
             Container.Inject(this);
         }
 
-        [TestCase(1, 1, 2, 1, Direction.Right)]
-        [TestCase(1, 1, 0, 1, Direction.Left)]
-        [TestCase(1, 1, 1, 0, Direction.Up)]
-        [TestCase(1, 1, 1, 2, Direction.Down)]
+        [TestCase(1, 1, 1, 2, Direction.Right)]
+        [TestCase(1, 1, 1, 0, Direction.Left)]
+        [TestCase(1, 1, 0, 1, Direction.Up)]
+        [TestCase(1, 1, 2, 1, Direction.Down)]
         public void SimpleMovements_ShouldBeOnTargetSlot(
             int initialX, int initialY,
             int targetX, int targetY,
@@ -75,8 +75,8 @@ namespace TheseusAndTheMinotaur.Tests.Editor
             _movement.Move(direction);
 
             _movementEntitySub.CurrentTile.Should().Be(targetTile);
-            initialTile.Entity.Should().BeNull();
-            targetTile.Entity.Should().Be(_movementEntitySub);
+            initialTile.PlacedEntities.Should().BeEmpty();
+            targetTile.PlacedEntities.Should().Contain(_movementEntitySub);
         }
 
         [TestCase(0, 0, Direction.Left)]
@@ -109,14 +109,14 @@ namespace TheseusAndTheMinotaur.Tests.Editor
 
         private void SetCurrentMoveCountLeft(int value)
         {
-            _movementHumbleObjectSub.MaxMoveCount.Returns(value);
-            _movementHumbleObjectSub.Humble_MoveCountLeft.Returns(value);
+            _movementHumbleObjectSub.Humble_MaxMoveCountLeft.Returns(value);
+            _movementHumbleObjectSub.Humble_CurrentMoveCountLeft.Returns(value);
         }
 
         private void SetInitialMovementEntityTile(ITile tile)
         {
             _movementEntitySub.CurrentTile.Returns(tile);
-            tile.LinkEntity(_movementEntitySub);
+            tile.AddEntity(_movementEntitySub);
         }
     }
 }
