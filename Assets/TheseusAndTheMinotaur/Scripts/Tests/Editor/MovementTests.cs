@@ -3,59 +3,37 @@ using NSubstitute;
 using NUnit.Framework;
 using TheseusAndTheMinotaur.Map;
 using TheseusAndTheMinotaur.Movement;
-using Zenject;
 
 namespace TheseusAndTheMinotaur.Tests.Editor
 {
     [TestFixture]
-    public class MovementTests : ZenjectUnitTestFixture
+    public class MovementTests
     {
-        [Inject]
         private IMap _map;
 
-        [Inject]
         private ITileBasedMovement _movement;
 
-        [Inject]
         private ITileBasedMovementHumbleObject _movementHumbleObjectSub;
 
-        [Inject]
         private IGameEntity _movementEntitySub;
 
         [SetUp]
         public void CommonInstall()
         {
-            IGameEntity movementEntitySub = Substitute.For<IGameEntity>();
+            _movementEntitySub = Substitute.For<IGameEntity>();
 
-            Container
-                .Bind<IGameEntity>()
-                .FromInstance(movementEntitySub)
-                .AsSingle();
-
-            ITileBasedMovementHumbleObject movementHumbleObjectSub =
+            _movementHumbleObjectSub =
                 Substitute.For<ITileBasedMovementHumbleObject>();
-            movementHumbleObjectSub.Entity.Returns(movementEntitySub);
+            _movementHumbleObjectSub.Entity.Returns(_movementEntitySub);
 
-            Container
-                .Bind<ITileBasedMovementHumbleObject>()
-                .FromInstance(movementHumbleObjectSub)
-                .AsSingle();
+            _movement = new BasicTileBasedMovementController(_movementHumbleObjectSub);
 
-            BasicTileBasedMovementController movement = new BasicTileBasedMovementController(movementHumbleObjectSub);
+            IMapHumbleObject mapHumbleSub = Substitute.For<IMapHumbleObject>();
+            mapHumbleSub.TileFactory.Returns(new TileFactory());
+            mapHumbleSub.Height.Returns(4);
+            mapHumbleSub.Width.Returns(4);
 
-            Container
-                .Bind<ITileBasedMovement>()
-                .FromInstance(movement)
-                .AsSingle();
-
-            DefaultMap map = new DefaultMap(4, 4);
-
-            Container
-                .Bind<IMap>()
-                .FromInstance(map)
-                .AsSingle();
-
-            Container.Inject(this);
+            _map = new MapController(mapHumbleSub);
         }
 
         [TestCase(1, 1, 1, 2, Direction.Right)]

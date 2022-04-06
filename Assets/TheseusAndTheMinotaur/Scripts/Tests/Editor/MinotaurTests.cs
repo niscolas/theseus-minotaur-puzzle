@@ -5,23 +5,15 @@ using TheseusAndTheMinotaur.Map;
 using TheseusAndTheMinotaur.Minotaur;
 using TheseusAndTheMinotaur.Movement;
 using TheseusAndTheMinotaur.Theseus;
-using Zenject;
 
 namespace TheseusAndTheMinotaur.Tests.Editor
 {
     [TestFixture]
-    public class MinotaurTests : ZenjectUnitTestFixture
+    public class MinotaurTests
     {
-        [Inject]
         private ITheseusBehavior _theseusBehavior;
-
-        [Inject]
         private IMinotaurBehavior _minotaurBehavior;
-
-        [Inject]
         private ITileBasedMovementHumbleObject _minotaurMovementHumbleSub;
-
-        [Inject]
         private IMap _map;
 
         [SetUp]
@@ -30,8 +22,6 @@ namespace TheseusAndTheMinotaur.Tests.Editor
             ITheseus theseus = SetupTheseus();
             SetupMinotaur(theseus);
             SetupMap();
-
-            Container.Inject(this);
         }
 
         private ITheseus SetupTheseus()
@@ -50,10 +40,9 @@ namespace TheseusAndTheMinotaur.Tests.Editor
             theseusBehaviorHumbleSub.Movement.Returns(theseusMovementController);
             theseusBehaviorHumbleSub.Entity.Returns(theseus);
 
-            ITheseusBehavior theseusBehavior =
+            _theseusBehavior =
                 new TheseusBehaviorController(theseusBehaviorHumbleSub);
 
-            Container.Bind<ITheseusBehavior>().FromInstance(theseusBehavior).AsSingle();
             return theseus;
         }
 
@@ -61,12 +50,12 @@ namespace TheseusAndTheMinotaur.Tests.Editor
         {
             IMinotaur minotaur = Substitute.For<IMinotaur>();
 
-            ITileBasedMovementHumbleObject minotaurMovementHumbleSub =
+            _minotaurMovementHumbleSub =
                 Substitute.For<ITileBasedMovementHumbleObject>();
-            minotaurMovementHumbleSub.Entity.Returns(minotaur);
+            _minotaurMovementHumbleSub.Entity.Returns(minotaur);
 
             ITileBasedMovement minotaurMovementController =
-                new BasicTileBasedMovementController(minotaurMovementHumbleSub);
+                new BasicTileBasedMovementController(_minotaurMovementHumbleSub);
 
             IMinotaurBehaviorHumbleObject minotaurBehaviorHumbleSub =
                 Substitute.For<IMinotaurBehaviorHumbleObject>();
@@ -74,20 +63,18 @@ namespace TheseusAndTheMinotaur.Tests.Editor
             minotaurBehaviorHumbleSub.Minotaur.Returns(minotaur);
             minotaurBehaviorHumbleSub.Theseus.Returns(theseus);
 
-            IMinotaurBehavior minotaurBehavior =
+            _minotaurBehavior =
                 new MinotaurBehaviorController(minotaurBehaviorHumbleSub);
-
-            Container.Bind<IMinotaurBehavior>().FromInstance(minotaurBehavior).AsSingle();
-            Container
-                .Bind<ITileBasedMovementHumbleObject>()
-                .FromInstance(minotaurMovementHumbleSub)
-                .AsSingle();
         }
 
         private void SetupMap()
         {
-            IMap map = new DefaultMap(10, 10);
-            Container.Bind<IMap>().FromInstance(map).AsSingle();
+            IMapHumbleObject mapHumbleSub = Substitute.For<IMapHumbleObject>();
+            mapHumbleSub.TileFactory.Returns(new TileFactory());
+            mapHumbleSub.Height.Returns(10);
+            mapHumbleSub.Width.Returns(10);
+
+            _map = new MapController(mapHumbleSub);
         }
 
         [TestCase(0, 0, 2, 2)]

@@ -1,14 +1,7 @@
-using System.Collections.Generic;
-
 namespace TheseusAndTheMinotaur
 {
-    public interface ITile
+    public interface ITile : ITileData
     {
-        int X { get; }
-        int Y { get; }
-        IMap ParentMap { get; }
-        IEnumerable<IGameEntity> PlacedEntities { get; }
-
         void AddEntity(IGameEntity entity);
         void UnlinkEntity(IGameEntity entity);
         void AddObstacle(IObstacle obstacle, Direction direction);

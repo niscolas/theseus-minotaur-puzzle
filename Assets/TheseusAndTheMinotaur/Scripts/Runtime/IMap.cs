@@ -1,10 +1,7 @@
 namespace TheseusAndTheMinotaur
 {
-    public interface IMap
+    public interface IMap : IMapData
     {
-        int Width { get; }
-        int Height { get; }
-
         bool CheckIsValidTile(int x, int y);
         bool CheckHasValidNeighbourTile(ITile tile, Direction direction);
         ITile GetNeighbourTile(ITile tile, Direction direction);
