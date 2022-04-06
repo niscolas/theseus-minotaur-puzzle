@@ -2,6 +2,6 @@ namespace TheseusAndTheMinotaur
 {
     public interface IGameEntity
     {
-        ITile CurrentTile { get; }
+        ITile CurrentTile { get; set; }
     }
 }

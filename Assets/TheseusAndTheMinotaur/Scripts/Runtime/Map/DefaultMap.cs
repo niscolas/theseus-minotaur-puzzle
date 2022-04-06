@@ -2,19 +2,20 @@ using TheseusAndTheMinotaur.Common;
 
 namespace TheseusAndTheMinotaur.Map
 {
-    internal class Map : IMap
+    internal class DefaultMap : IMap
     {
         public int Width { get; }
         public int Height { get; }
 
         private readonly ITile[,] Tiles;
 
-        public Map(int width, int height)
+        public DefaultMap(int width, int height)
         {
             Width = width;
             Height = height;
 
             Tiles = new ITile[width, height];
+            CreateTiles();
         }
 
         public bool TryGetTile(int x, int y, out ITile tile)
@@ -33,11 +34,12 @@ namespace TheseusAndTheMinotaur.Map
 
         public bool CheckIsValidTile(int x, int y)
         {
-            bool result = x < Width && y < Height;
+            bool result = x >= 0 && x < Height &&
+                          y >= 0 && y < Width;
             return result;
         }
 
-        public bool CheckIsValidNeighbourTile(ITile tile, Direction direction)
+        public bool CheckHasValidNeighbourTile(ITile tile, Direction direction)
         {
             GetNeighbourCoordinates(
                 tile, direction, out int neighbourX, out int neighbourY);
@@ -50,7 +52,7 @@ namespace TheseusAndTheMinotaur.Map
         {
             neighbourTile = default;
 
-            bool isNeighbourValid = CheckIsValidNeighbourTile(tile, direction);
+            bool isNeighbourValid = CheckHasValidNeighbourTile(tile, direction);
 
             if (!isNeighbourValid)
             {
@@ -85,6 +87,17 @@ namespace TheseusAndTheMinotaur.Map
                 direction,
                 out neighbourX,
                 out neighbourY);
+        }
+
+        private void CreateTiles()
+        {
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    Tiles[i, j] = new FixedTile(i, j, this);
+                }
+            }
         }
     }
 }

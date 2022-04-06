@@ -1,0 +1,34 @@
+{
+    "name": "TheseusAndTheMinotaur.Tests.Editor",
+    "rootNamespace": "TheseusAndTheMinotaur.Tests.Editor",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Zenject-TestFramework",
+        "Zenject-UnitTests-Editor",
+        "Zenject-IntegrationTests",
+        "TheseusAndTheMinotaur",
+        "TheseusAndTheMinotaur.Map",
+        "TheseusAndTheMinotaur.Minotaur",
+        "TheseusAndTheMinotaur.Movement",
+        "TheseusAndTheMinotaur.Theseus",
+        "TheseusAndTheMinotaur.Turn",
+        "Zenject"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Zenject-usage.dll",
+        "FluentAssertions.dll",
+        "NSubstitute.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

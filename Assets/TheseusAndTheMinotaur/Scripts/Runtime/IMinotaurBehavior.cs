@@ -2,9 +2,10 @@ using System;
 
 namespace TheseusAndTheMinotaur
 {
-    public interface IMinotaurBehavior
+    public interface IMinotaurBehavior : IMinotaurBehaviorData
     {
         event Action TurnEnded;
         void StartTurn();
+        MoveResult? Move();
     }
 }

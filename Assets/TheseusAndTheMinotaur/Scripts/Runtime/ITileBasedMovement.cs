@@ -1,7 +1,11 @@
+using System;
+
 namespace TheseusAndTheMinotaur
 {
     public interface ITileBasedMovement : ITileBasedMovementData
     {
-        void Move(Direction direction);
+        event Action GotExhausted;
+        void ResetMoveCount();
+        MoveResult Move(Direction direction);
     }
 }

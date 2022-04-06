@@ -1,9 +1,37 @@
-using System;
-
 namespace TheseusAndTheMinotaur.Common
 {
     public class CoordinateUtility
     {
+        public static Direction? GetHorizontalDirectionOffset(int fromY, int toY)
+        {
+            if (fromY > toY)
+            {
+                return Direction.Left;
+            }
+
+            if (fromY < toY)
+            {
+                return Direction.Right;
+            }
+
+            return null;
+        }
+
+        public static Direction? GetVerticalDirectionOffset(int fromX, int toX)
+        {
+            if (fromX > toX)
+            {
+                return Direction.Up;
+            }
+
+            if (fromX < toX)
+            {
+                return Direction.Down;
+            }
+
+            return null;
+        }
+
         public static void GetOffsetForDirection(
             Direction direction,
             out int xOffset,
