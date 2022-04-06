@@ -1,0 +1,16 @@
+{
+    "name": "TheseusAndTheMinotaur.Turn",
+    "rootNamespace": "TheseusAndTheMinotaur.Turn",
+    "references": [
+        "GUID:1b599c669aace6f47ba5846a085d154d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
