@@ -6,6 +6,7 @@ namespace TheseusAndTheMinotaur.Theseus
     {
         public event Action TurnStarted;
         public event Action TurnEnded;
+        public event Action ReachedLevelEnd;
 
         public IGameEntity Entity => _humbleObject.Entity;
 

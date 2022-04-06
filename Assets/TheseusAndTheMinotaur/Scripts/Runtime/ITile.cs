@@ -7,5 +7,6 @@ namespace TheseusAndTheMinotaur
         void UnlinkEntity(IGameEntity entity);
         void ActivateObstacle(Direction direction);
         bool CheckIsObstacleOfDirectionActive(Direction direction);
+        void SetIsLevelEnd(bool value);
     }
 }

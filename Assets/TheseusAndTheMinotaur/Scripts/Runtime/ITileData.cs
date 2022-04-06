@@ -11,5 +11,6 @@ namespace TheseusAndTheMinotaur
         bool IsDisabled { get; }
         IMap ParentMap { get; }
         IEnumerable<IGameEntity> PlacedEntities { get; }
+        bool IsLevelEnd { get; }
     }
 }

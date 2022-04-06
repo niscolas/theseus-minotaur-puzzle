@@ -12,6 +12,7 @@ namespace TheseusAndTheMinotaur.Theseus
 
         public event Action TurnStarted;
         public event Action TurnEnded;
+        public event Action ReachedLevelEnd;
 
         public IGameEntity Entity { get; private set; }
         public ITileBasedMovement Movement { get; private set; }
@@ -40,6 +41,11 @@ namespace TheseusAndTheMinotaur.Theseus
             _reachedDestination = _movementView.CheckReachedDestination(_targetPosition);
             if (_reachedDestination && !_isControllerTurnActive && _isTurnActive)
             {
+                if (Entity.CurrentTile.IsLevelEnd)
+                {
+                    OnReachedLevelEnd();
+                }
+
                 OnTurnEnded();
                 _isTurnActive = false;
                 return;
@@ -89,6 +95,11 @@ namespace TheseusAndTheMinotaur.Theseus
         private void OnTurnEnded()
         {
             TurnEnded?.Invoke();
+        }
+
+        private void OnReachedLevelEnd()
+        {
+            ReachedLevelEnd?.Invoke();
         }
     }
 }

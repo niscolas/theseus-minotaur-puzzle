@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 
 namespace TheseusAndTheMinotaur.Theseus
 {
-    public class TheseusBehaviorInputMB : MonoBehaviour
+    public class TheseusInputMB : MonoBehaviour
     {
         [Required, SerializeField]
         private TheseusBehaviorMB _theseusBehavior;
+
+        public void HandleLoadNextLevelInput() { }
+
+        public void HandleLoadPreviousLevelInput() { }
 
         public void HandleMoveInput(InputAction.CallbackContext ctx)
         {

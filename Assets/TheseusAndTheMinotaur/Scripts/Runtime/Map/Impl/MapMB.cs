@@ -16,7 +16,7 @@ namespace TheseusAndTheMinotaur.Map
         private IntReference _height;
 
         [Required, SerializeField]
-        private PuzzleLevelSO _puzzleLevelAsset;
+        private PuzzleLevelAssetsDatabaseMB _levelAssetsDatabase;
 
         [Required, SerializeField]
         private TileFactoryMB _tileFactory;
@@ -26,7 +26,7 @@ namespace TheseusAndTheMinotaur.Map
 
         public ITileFactory TileFactory => _tileFactory;
         public ITile[,] Tiles { get; set; }
-        public PuzzleLevelData PuzzleLevelData => _puzzleLevelAsset.Data;
+        public PuzzleLevelData PuzzleLevelData => _levelAssetsDatabase.GetCurrent().Data;
 
         private MapController _controller;
 
@@ -34,7 +34,7 @@ namespace TheseusAndTheMinotaur.Map
         {
             _controller = new MapController(this);
 
-            if (!_puzzleLevelAsset)
+            if (!_levelAssetsDatabase.GetCurrent())
             {
                 return;
             }
@@ -131,9 +131,44 @@ namespace TheseusAndTheMinotaur.Map
                 obstacleDirections.Add(Direction.Down);
             }
 
+            if (tileData.IsLevelEnd)
+            {
+                tile.SetIsLevelEnd(true);
+            }
+
             foreach (Direction obstacleDirection in obstacleDirections)
             {
+                ActivateOppositeObstacle(tile, obstacleDirection);
                 tile.ActivateObstacle(obstacleDirection);
+            }
+        }
+
+        private void ActivateOppositeObstacle(ITile tile, Direction obstacleDirection)
+        {
+            if (TryGetNeighbourTile(tile, obstacleDirection, out ITile neighbourTile))
+            {
+                neighbourTile.ActivateObstacle(GetOppositeDirection(obstacleDirection));
+            }
+        }
+
+        private Direction GetOppositeDirection(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Left:
+                    return Direction.Right;
+                    break;
+                case Direction.Right:
+                    return Direction.Left;
+                    break;
+                case Direction.Up:
+                    return Direction.Down;
+                    break;
+                case Direction.Down:
+                    return Direction.Up;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
     }

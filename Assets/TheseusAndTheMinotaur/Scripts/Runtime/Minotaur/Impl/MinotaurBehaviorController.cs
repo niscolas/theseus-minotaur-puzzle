@@ -6,6 +6,7 @@ namespace TheseusAndTheMinotaur.Minotaur
     internal class MinotaurBehaviorController : IMinotaurBehavior
     {
         public event Action TurnEnded;
+        public event Action ArrivedAtTheseus;
 
         private ITileBasedMovement Movement => _humbleObject.Movement;
         private ITheseus Theseus => _humbleObject.Theseus;
@@ -53,6 +54,11 @@ namespace TheseusAndTheMinotaur.Minotaur
             else
             {
                 moveResult = OnSameColumnAsTheseus();
+            }
+
+            if (Minotaur.CurrentTile == Theseus.CurrentTile)
+            {
+                ArrivedAtTheseus?.Invoke();
             }
 
             if (moveResult != null && CheckShouldEndTurn(moveResult.Value))

@@ -30,6 +30,8 @@ namespace TheseusAndTheMinotaur.Map
 
         public IEnumerable<IGameEntity> PlacedEntities => _humbleObject.PlacedEntities;
 
+        public bool IsLevelEnd => _humbleObject.IsLevelEnd;
+
         private IDictionary<Direction, IObstacle> Obstacles => _humbleObject.Obstacles;
         private IList<IGameEntity> PlacedEntitiesList => _humbleObject.PlacedEntitiesList;
 
@@ -82,6 +84,11 @@ namespace TheseusAndTheMinotaur.Map
         {
             bool result = GetObstacleForDirection(direction).IsActive;
             return result;
+        }
+
+        public void SetIsLevelEnd(bool value)
+        {
+            _humbleObject.Humble_IsLevelEnd = value;
         }
 
         private IObstacle GetObstacleForDirection(Direction direction)

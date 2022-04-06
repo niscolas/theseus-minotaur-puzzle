@@ -7,6 +7,7 @@ namespace TheseusAndTheMinotaur.Minotaur
     public class MinotaurBehaviorMB : MonoBehaviour, IMinotaurBehavior, IMinotaurBehaviorHumbleObject
     {
         public event Action TurnEnded;
+        public event Action ArrivedAtTheseus;
         public IMinotaur Minotaur { get; private set; }
         public ITheseus Theseus { get; private set; }
         public ITileBasedMovement Movement { get; private set; }
@@ -44,14 +45,7 @@ namespace TheseusAndTheMinotaur.Minotaur
 
             if (_reachedTargetPosition)
             {
-                if (!_isControllerTurnActive)
-                {
-                    _isTurnActive = false;
-                    OnTurnEnded();
-                    return;
-                }
-
-                ChaseTheseus();
+                OnReachedTargetPosition();
                 return;
             }
 
@@ -97,6 +91,29 @@ namespace TheseusAndTheMinotaur.Minotaur
         private void OnTurnEnded()
         {
             TurnEnded?.Invoke();
+        }
+
+        private void OnReachedTargetPosition()
+        {
+            if (Minotaur.CurrentTile == Theseus.CurrentTile)
+            {
+                OnArrivedAtTheseus();
+                return;
+            }
+
+            if (!_isControllerTurnActive)
+            {
+                _isTurnActive = false;
+                OnTurnEnded();
+                return;
+            }
+
+            ChaseTheseus();
+        }
+
+        private void OnArrivedAtTheseus()
+        {
+            ArrivedAtTheseus?.Invoke();
         }
     }
 }

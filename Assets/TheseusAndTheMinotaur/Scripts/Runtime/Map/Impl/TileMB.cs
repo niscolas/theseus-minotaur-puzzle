@@ -16,6 +16,9 @@ namespace TheseusAndTheMinotaur.Map
         private bool _isDisabled = false;
 
         [Required, SerializeField]
+        private GameObject _isLevelEndIndicator;
+
+        [Required, SerializeField]
         private ObstacleMB _leftObstacle;
 
         [Required, SerializeField]
@@ -37,6 +40,8 @@ namespace TheseusAndTheMinotaur.Map
         public IList<IGameEntity> PlacedEntitiesList { get; } = new List<IGameEntity>();
         public IEnumerable<IGameEntity> PlacedEntities => PlacedEntitiesList;
 
+        public bool IsLevelEnd => Humble_IsLevelEnd;
+
         public int Humble_X
         {
             get => _x;
@@ -50,6 +55,7 @@ namespace TheseusAndTheMinotaur.Map
         }
 
         public IMap Humble_ParentMap { get; set; }
+        public bool Humble_IsLevelEnd { get; set; }
 
         public IDictionary<Direction, IObstacle> Obstacles { get; } = new Dictionary<Direction, IObstacle>();
 
@@ -95,6 +101,12 @@ namespace TheseusAndTheMinotaur.Map
         public bool CheckIsObstacleOfDirectionActive(Direction direction)
         {
             return _controller.CheckIsObstacleOfDirectionActive(direction);
+        }
+
+        public void SetIsLevelEnd(bool value)
+        {
+            _controller.SetIsLevelEnd(value);
+            _isLevelEndIndicator.SetActive(value);
         }
     }
 }
