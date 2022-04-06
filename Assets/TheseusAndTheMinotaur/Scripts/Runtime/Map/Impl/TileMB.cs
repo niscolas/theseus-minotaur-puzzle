@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace TheseusAndTheMinotaur.Map
@@ -11,8 +12,24 @@ namespace TheseusAndTheMinotaur.Map
         [SerializeField]
         private int _y;
 
+        [SerializeField]
+        private bool _isDisabled = false;
+
+        [Required, SerializeField]
+        private ObstacleMB _leftObstacle;
+
+        [Required, SerializeField]
+        private ObstacleMB _rightObstacle;
+
+        [Required, SerializeField]
+        private ObstacleMB _upObstacle;
+
+        [Required, SerializeField]
+        private ObstacleMB _downObstacle;
+
         public int X => Humble_X;
         public int Y => Humble_X;
+        public bool IsDisabled => _isDisabled;
 
         public IMap ParentMap => Humble_ParentMap;
 
@@ -40,11 +57,21 @@ namespace TheseusAndTheMinotaur.Map
         private void Awake()
         {
             _controller = new TileController(this);
+            Obstacles[Direction.Left] = _leftObstacle;
+            Obstacles[Direction.Right] = _rightObstacle;
+            Obstacles[Direction.Down] = _downObstacle;
+            Obstacles[Direction.Up] = _upObstacle;
         }
 
         public void Setup(int x, int y, IMap parentMap)
         {
             _controller.Setup(x, y, parentMap);
+        }
+
+        public void Disable()
+        {
+            gameObject.SetActive(false);
+            _controller.Disable();
         }
 
         public void AddEntity(IGameEntity entity)
@@ -57,14 +84,14 @@ namespace TheseusAndTheMinotaur.Map
             _controller.UnlinkEntity(entity);
         }
 
-        public void AddObstacle(IObstacle obstacle, Direction direction)
+        public void ActivateObstacle(Direction direction)
         {
-            _controller.AddObstacle(obstacle, direction);
+            _controller.ActivateObstacle(direction);
         }
 
-        public bool CheckIsDirectionFree(Direction direction)
+        public bool CheckIsObstacleOfDirectionActive(Direction direction)
         {
-            return _controller.CheckIsDirectionFree(direction);
+            return _controller.CheckIsObstacleOfDirectionActive(direction);
         }
     }
 }

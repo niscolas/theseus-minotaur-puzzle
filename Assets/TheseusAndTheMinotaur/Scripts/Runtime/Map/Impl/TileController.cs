@@ -17,6 +17,8 @@ namespace TheseusAndTheMinotaur.Map
             set => _humbleObject.Humble_Y = value;
         }
 
+        public bool IsDisabled => _humbleObject.IsDisabled;
+
         public IMap ParentMap
         {
             get => _humbleObject.Humble_ParentMap;
@@ -42,6 +44,8 @@ namespace TheseusAndTheMinotaur.Map
             ParentMap = parentMap;
         }
 
+        public void Disable() { }
+
         public void AddEntity(IGameEntity entity)
         {
             if (PlacedEntitiesList.Contains(entity))
@@ -62,20 +66,24 @@ namespace TheseusAndTheMinotaur.Map
             PlacedEntitiesList.Remove(entity);
         }
 
-        public void AddObstacle(IObstacle obstacle, Direction direction)
+        public void ActivateObstacle(Direction direction)
         {
-            bool hasObstacleInDirection = !CheckIsDirectionFree(direction);
-
-            if (!hasObstacleInDirection)
+            bool isGivenObstacleActive = CheckIsObstacleOfDirectionActive(direction);
+            if (!isGivenObstacleActive)
             {
-                Obstacles.Add(direction, obstacle);
+                GetObstacleForDirection(direction).Enable();
             }
         }
 
-        public bool CheckIsDirectionFree(Direction direction)
+        public bool CheckIsObstacleOfDirectionActive(Direction direction)
         {
-            bool result = !Obstacles.ContainsKey(direction);
+            bool result = GetObstacleForDirection(direction).IsActive;
             return result;
+        }
+
+        private IObstacle GetObstacleForDirection(Direction direction)
+        {
+            return Obstacles[direction];
         }
     }
 }

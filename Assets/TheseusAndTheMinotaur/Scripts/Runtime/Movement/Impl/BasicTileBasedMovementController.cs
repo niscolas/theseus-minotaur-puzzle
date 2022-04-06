@@ -104,7 +104,7 @@ namespace TheseusAndTheMinotaur.Movement
 
         private bool CheckCanMoveToDirection(Direction direction)
         {
-            bool result = Entity.CurrentTile.CheckIsDirectionFree(direction);
+            bool result = Entity.CurrentTile.CheckIsObstacleOfDirectionActive(direction);
             return result;
         }
     }

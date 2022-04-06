@@ -6,6 +6,7 @@ namespace TheseusAndTheMinotaur
     {
         int X { get; }
         int Y { get; }
+        bool IsDisabled { get; }
         IMap ParentMap { get; }
         IEnumerable<IGameEntity> PlacedEntities { get; }
     }

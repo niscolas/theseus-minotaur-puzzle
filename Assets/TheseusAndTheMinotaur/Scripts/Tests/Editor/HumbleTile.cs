@@ -7,6 +7,7 @@ namespace TheseusAndTheMinotaur.Tests.Editor
     {
         public int X => Humble_X;
         public int Y => Humble_Y;
+        public bool IsDisabled { get; }
         public IMap ParentMap { get; }
         public IEnumerable<IGameEntity> PlacedEntities => PlacedEntitiesList;
         public int Humble_X { get; set; }

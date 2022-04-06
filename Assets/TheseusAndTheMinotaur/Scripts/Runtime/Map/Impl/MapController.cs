@@ -20,7 +20,19 @@ namespace TheseusAndTheMinotaur.Map
         public MapController(IMapHumbleObject humbleObject)
         {
             _humbleObject = humbleObject;
-            CreateTiles();
+        }
+
+        public void Create()
+        {
+            Tiles = new ITile[Height, Width];
+
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    Tiles[i, j] = TileFactory.Create(i, j, this);
+                }
+            }
         }
 
         public bool TryGetTile(int x, int y, out ITile tile)
@@ -41,6 +53,13 @@ namespace TheseusAndTheMinotaur.Map
         {
             bool result = x >= 0 && x < Height &&
                           y >= 0 && y < Width;
+
+            ITile tile = GetTile(x, y);
+
+            result = result &&
+                     tile != null &&
+                     !tile.IsDisabled;
+
             return result;
         }
 
@@ -92,19 +111,6 @@ namespace TheseusAndTheMinotaur.Map
                 direction,
                 out neighbourX,
                 out neighbourY);
-        }
-
-        private void CreateTiles()
-        {
-            Tiles = new ITile[Height, Width];
-
-            for (int i = 0; i < Height; i++)
-            {
-                for (int j = 0; j < Width; j++)
-                {
-                    Tiles[i, j] = TileFactory.Create(i, j, this);
-                }
-            }
         }
     }
 }

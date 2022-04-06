@@ -2,6 +2,7 @@ namespace TheseusAndTheMinotaur
 {
     public interface IMap : IMapData
     {
+        void Create();
         bool CheckIsValidTile(int x, int y);
         bool CheckHasValidNeighbourTile(ITile tile, Direction direction);
         ITile GetNeighbourTile(ITile tile, Direction direction);

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 482077812}
   - component: {fileID: 482077813}
   - component: {fileID: 482077814}
+  - component: {fileID: 482077815}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -169,6 +170,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f1b7d58b03497bad7dd51faa857ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _width:
+    _usage: 0
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+  _height:
+    _usage: 0
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
   _levelAsset: {fileID: 11400000, guid: c237aa3dd99ff064cae9c1480a0438e1, type: 2}
 --- !u!114 &482077813
 MonoBehaviour:
@@ -182,8 +195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332d4054d72049f2af9e755de7d2f4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 4
-  _height: 4
+  _width:
+    _usage: 0
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+  _height:
+    _usage: 0
+    _value: 0
+    _constant: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
+  _puzzleLevelAsset: {fileID: 11400000, guid: c237aa3dd99ff064cae9c1480a0438e1, type: 2}
   _tileFactory: {fileID: 482077814}
 --- !u!114 &482077814
 MonoBehaviour:
@@ -199,6 +223,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 830788816593858660, guid: a530995e57a547043a6cdb35b5162bfe, type: 3}
   _offset: 1
+--- !u!114 &482077815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482077808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3606d8438fc469ca6b29ea9c19e9d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstaclePrefab: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +382,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
