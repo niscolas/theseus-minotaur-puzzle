@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2e4358c6154ae189de4c395368751e, type: 3}
   m_Name: PuzzleLevel-2
   m_EditorClassIdentifier: 
-  _devComment: Sometimes, running isn't the answer ;)
+  _devComment: Sometimes, running isn't the answer, wait and patience can be the
+    key ;)
   _size: {x: 4, y: 6}
   _data:
     _rows:

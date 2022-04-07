@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PuzzleLevel-1
   m_EditorClassIdentifier: 
   _devComment: By using the horizontal priority logic, Theseus can move freely in
-    many situtations where there's an obstacle between him and the Minotaur
+    many situations where there's an obstacle between him and the Minotaur
   _size: {x: 6, y: 6}
   _data:
     _rows:

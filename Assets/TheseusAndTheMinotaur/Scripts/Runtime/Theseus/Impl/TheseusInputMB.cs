@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace TheseusAndTheMinotaur.Theseus
 {
@@ -19,6 +20,10 @@ namespace TheseusAndTheMinotaur.Theseus
         [SerializeField]
         private UnityEvent _onPassTurnInput;
 
+        [FormerlySerializedAs("_onRestarLevelInput")]
+        [SerializeField]
+        private UnityEvent _onRestartLevelInput;
+
         public void HandleLoadNextLevelInput(InputAction.CallbackContext ctx)
         {
             if (!ctx.performed)
@@ -35,6 +40,7 @@ namespace TheseusAndTheMinotaur.Theseus
             {
                 return;
             }
+
             _onLoadPreviousLevelInput?.Invoke();
         }
 
@@ -44,8 +50,18 @@ namespace TheseusAndTheMinotaur.Theseus
             {
                 return;
             }
-            
+
             _onPassTurnInput?.Invoke();
+        }
+
+        public void HandleRestartLevelInput(InputAction.CallbackContext ctx)
+        {
+            if (!ctx.performed)
+            {
+                return;
+            }
+
+            _onRestartLevelInput?.Invoke();
         }
 
         public void HandleMoveInput(InputAction.CallbackContext ctx)

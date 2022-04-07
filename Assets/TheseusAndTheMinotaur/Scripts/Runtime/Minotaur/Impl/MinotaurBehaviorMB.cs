@@ -15,7 +15,6 @@ namespace TheseusAndTheMinotaur.Minotaur
         private MinotaurBehaviorController _controller;
         private IMovementView _movementView;
 
-        private Vector3 _targetPosition;
         private bool _reachedTargetPosition;
         private bool _isControllerTurnActive;
         private bool _isTurnActive;
@@ -49,8 +48,9 @@ namespace TheseusAndTheMinotaur.Minotaur
                 return;
             }
 
-            _movementView.UpdatePosition(_targetPosition, Services.TimeService.DeltaTime);
-            _reachedTargetPosition = _movementView.CheckReachedDestination(_targetPosition);
+            Vector3 targetPosition = Minotaur.CurrentTile.Position;
+            _movementView.UpdatePosition(targetPosition, Services.TimeService.DeltaTime);
+            _reachedTargetPosition = _movementView.CheckReachedDestination(targetPosition);
         }
 
         private void OnDestroy()
@@ -75,7 +75,6 @@ namespace TheseusAndTheMinotaur.Minotaur
             {
                 if (result.Value.Type == MoveResultType.Success)
                 {
-                    _targetPosition = result.Value.NewTile.Position;
                     _reachedTargetPosition = false;
                 }
             }
