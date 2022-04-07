@@ -20,7 +20,7 @@ MonoBehaviour:
         _isMinotaurInitialTile: 0
         _isLevelEnd: 0
         _hasLeftObstacle: 0
-        _hasRightObstacle: 1
+        _hasRightObstacle: 0
         _hasUpObstacle: 0
         _hasDownObstacle: 0
       - _exists: 1
@@ -47,34 +47,9 @@ MonoBehaviour:
         _hasRightObstacle: 0
         _hasUpObstacle: 0
         _hasDownObstacle: 0
-    - _tiles:
       - _exists: 1
         _isTheseusInitialTile: 0
-        _isMinotaurInitialTile: 0
-        _isLevelEnd: 0
-        _hasLeftObstacle: 0
-        _hasRightObstacle: 1
-        _hasUpObstacle: 0
-        _hasDownObstacle: 0
-      - _exists: 1
-        _isTheseusInitialTile: 0
-        _isMinotaurInitialTile: 0
-        _isLevelEnd: 0
-        _hasLeftObstacle: 0
-        _hasRightObstacle: 0
-        _hasUpObstacle: 0
-        _hasDownObstacle: 0
-      - _exists: 1
-        _isTheseusInitialTile: 0
-        _isMinotaurInitialTile: 0
-        _isLevelEnd: 0
-        _hasLeftObstacle: 0
-        _hasRightObstacle: 0
-        _hasUpObstacle: 0
-        _hasDownObstacle: 0
-      - _exists: 1
-        _isTheseusInitialTile: 0
-        _isMinotaurInitialTile: 0
+        _isMinotaurInitialTile: 1
         _isLevelEnd: 0
         _hasLeftObstacle: 0
         _hasRightObstacle: 0
@@ -86,7 +61,15 @@ MonoBehaviour:
         _isMinotaurInitialTile: 0
         _isLevelEnd: 0
         _hasLeftObstacle: 0
-        _hasRightObstacle: 1
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
         _hasUpObstacle: 0
         _hasDownObstacle: 0
       - _exists: 1
@@ -119,7 +102,97 @@ MonoBehaviour:
         _isMinotaurInitialTile: 0
         _isLevelEnd: 0
         _hasLeftObstacle: 0
-        _hasRightObstacle: 1
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+    - _tiles:
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+    - _tiles:
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
+        _hasUpObstacle: 0
+        _hasDownObstacle: 0
+      - _exists: 1
+        _isTheseusInitialTile: 0
+        _isMinotaurInitialTile: 0
+        _isLevelEnd: 0
+        _hasLeftObstacle: 0
+        _hasRightObstacle: 0
         _hasUpObstacle: 0
         _hasDownObstacle: 0
       - _exists: 1

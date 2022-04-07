@@ -38,8 +38,13 @@ namespace TheseusAndTheMinotaur.Theseus
 
         private void Update()
         {
+            if (!_isTurnActive)
+            {
+                return;
+            }
+
             _reachedDestination = _movementView.CheckReachedDestination(_targetPosition);
-            if (_reachedDestination && !_isControllerTurnActive && _isTurnActive)
+            if (_reachedDestination && !_isControllerTurnActive)
             {
                 if (Entity.CurrentTile.IsLevelEnd)
                 {
@@ -47,7 +52,6 @@ namespace TheseusAndTheMinotaur.Theseus
                 }
 
                 OnTurnEnded();
-                _isTurnActive = false;
                 return;
             }
 
@@ -66,16 +70,31 @@ namespace TheseusAndTheMinotaur.Theseus
             _controller.StartTurn();
         }
 
-        public MoveResult Move(Direction direction)
+        public MoveResult? Move(Direction direction)
         {
-            MoveResult result = _controller.Move(direction);
-            if (result.Type == MoveResultType.Success)
+            if (!_isTurnActive || !_reachedDestination)
             {
-                _targetPosition = result.NewTile.Position;
+                return null;
+            }
+
+            MoveResult? result = _controller.Move(direction);
+            if (result.Value.Type == MoveResultType.Success)
+            {
+                _targetPosition = result.Value.NewTile.Position;
                 _reachedDestination = false;
             }
 
             return result;
+        }
+
+        public void ForceEndTurn()
+        {
+            if (!_reachedDestination || !_isControllerTurnActive || !_isTurnActive)
+            {
+                return;
+            }
+
+            OnTurnEnded();
         }
 
         private void OnTurnStarted()
@@ -94,6 +113,9 @@ namespace TheseusAndTheMinotaur.Theseus
 
         private void OnTurnEnded()
         {
+            _isControllerTurnActive = false;
+            _reachedDestination = true;
+            _isTurnActive = false;
             TurnEnded?.Invoke();
         }
 

@@ -35,7 +35,7 @@ namespace TheseusAndTheMinotaur.Theseus
             Movement.ResetMoveCount();
         }
 
-        public MoveResult Move(Direction direction)
+        public MoveResult? Move(Direction direction)
         {
             MoveResult result = Movement.Move(direction);
             return result;

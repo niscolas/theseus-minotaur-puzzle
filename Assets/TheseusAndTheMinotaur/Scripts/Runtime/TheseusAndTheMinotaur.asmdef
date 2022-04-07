@@ -1,7 +1,10 @@
 {
     "name": "TheseusAndTheMinotaur",
     "rootNamespace": "TheseusAndTheMinotaur",
-    "references": [],
+    "references": [
+        "GUID:29492541a59d04a81b47a7f225e8a22d",
+        "GUID:14165214884ae4a619bfb290f28194a7"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
