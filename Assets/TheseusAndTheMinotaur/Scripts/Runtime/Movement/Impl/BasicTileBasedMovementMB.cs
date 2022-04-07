@@ -37,6 +37,11 @@ namespace TheseusAndTheMinotaur.Movement
             return _controller.Move(direction);
         }
 
+        public bool CheckCanMoveToDirection(Direction direction)
+        {
+            return _controller.CheckCanMoveToDirection(direction);
+        }
+
         private void Controller_OnExhausted()
         {
             GotExhausted?.Invoke();

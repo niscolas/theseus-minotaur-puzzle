@@ -2,6 +2,6 @@ namespace TheseusAndTheMinotaur
 {
     public interface ITileFactory
     {
-        ITile Create(int x, int y, IMap parentMap);
+        ITile Create(int x, int y, IMap parentMap, float tileOffset);
     }
 }

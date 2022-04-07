@@ -18,6 +18,9 @@ namespace TheseusAndTheMinotaur.Map
         [Required, SerializeField]
         private PuzzleLevelAssetsDatabaseMB _levelAssetsDatabase;
 
+        [SerializeField]
+        private float _tileOffset;
+
         [Required, SerializeField]
         private TileFactoryMB _tileFactory;
 
@@ -27,6 +30,7 @@ namespace TheseusAndTheMinotaur.Map
         public ITileFactory TileFactory => _tileFactory;
         public ITile[,] Tiles { get; set; }
         public PuzzleLevelData PuzzleLevelData => _levelAssetsDatabase.GetCurrent().Data;
+        public float TileOffset => _tileOffset;
 
         private MapController _controller;
 
@@ -51,6 +55,16 @@ namespace TheseusAndTheMinotaur.Map
                     SetupTile(i, j);
                 }
             }
+
+            // ReadjustPosition();
+        }
+
+        private void ReadjustPosition()
+        {
+            Vector3 position = transform.position;
+            position.x -= Width * 0.5f * _tileOffset;
+            position.y += Height * _tileOffset * 0.5f;
+            transform.position = position;
         }
 
         public ITile GetTheseusInitialTile()

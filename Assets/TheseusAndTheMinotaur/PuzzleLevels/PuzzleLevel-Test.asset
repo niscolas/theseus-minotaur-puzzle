@@ -20,7 +20,7 @@ MonoBehaviour:
         _isMinotaurInitialTile: 0
         _isLevelEnd: 0
         _hasLeftObstacle: 0
-        _hasRightObstacle: 0
+        _hasRightObstacle: 1
         _hasUpObstacle: 0
         _hasDownObstacle: 0
       - _exists: 1

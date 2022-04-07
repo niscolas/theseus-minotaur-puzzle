@@ -8,13 +8,10 @@ namespace TheseusAndTheMinotaur.Map
         [SerializeField]
         private TileMB _tilePrefab;
 
-        [SerializeField]
-        private float _offset;
-
-        public ITile Create(int x, int y, IMap parentMap)
+        public ITile Create(int x, int y, IMap parentMap, float tileOffset)
         {
-            float positionX = y * _offset;
-            float positionY = x * -_offset;
+            float positionX = y * tileOffset;
+            float positionY = x * -tileOffset;
             Vector3 position = new Vector3(positionX, positionY, 0);
 
             TileMB tile = Services.SpawnService.Spawn(_tilePrefab, position, _tilePrefab.transform.rotation, transform);

@@ -42,19 +42,16 @@ namespace TheseusAndTheMinotaur.Minotaur
             bool isInSameRowAsTheseus =
                 Minotaur.CurrentTile.X == Theseus.CurrentTile.X;
 
-            MoveResult? moveResult = null;
             if (isInSameColumnAsTheseus && isInSameRowAsTheseus)
             {
                 EndTurn();
             }
-            else if (!isInSameColumnAsTheseus)
-            {
-                moveResult = OnNotSameColumnAsTheseus();
-            }
-            else
-            {
-                moveResult = OnSameColumnAsTheseus();
-            }
+
+            Direction? horizontalMoveDirection = GetHorizontalMoveDirection();
+            Direction? verticalMoveDirection = GetVerticalMoveDirection();
+
+            MoveResult? moveResult = ChooseMovement(
+                horizontalMoveDirection, verticalMoveDirection);
 
             if (Minotaur.CurrentTile == Theseus.CurrentTile)
             {
@@ -69,20 +66,41 @@ namespace TheseusAndTheMinotaur.Minotaur
             return moveResult;
         }
 
-        private MoveResult? OnNotSameColumnAsTheseus()
+        private MoveResult? ChooseMovement(Direction? horizontalMoveDirection, Direction? verticalMoveDirection)
+        {
+            MoveResult? moveResult = null;
+            if (horizontalMoveDirection != null &&
+                Movement.CheckCanMoveToDirection(horizontalMoveDirection.Value))
+            {
+                return Movement.Move(horizontalMoveDirection.Value);
+            }
+
+            if (verticalMoveDirection != null &&
+                Movement.CheckCanMoveToDirection(verticalMoveDirection.Value))
+            {
+                return Movement.Move(verticalMoveDirection.Value);
+            }
+
+            return new MoveResult(
+                Minotaur.CurrentTile,
+                Minotaur.CurrentTile,
+                MoveResultType.Failure);
+        }
+
+        private Direction? GetHorizontalMoveDirection()
         {
             Direction? direction = CoordinateUtility.GetHorizontalDirectionOffset(
                 Minotaur.CurrentTile.Y, Theseus.CurrentTile.Y);
 
-            return Move(direction);
+            return direction;
         }
 
-        private MoveResult? OnSameColumnAsTheseus()
+        private Direction? GetVerticalMoveDirection()
         {
             Direction? direction = CoordinateUtility.GetVerticalDirectionOffset(
                 Minotaur.CurrentTile.X, Theseus.CurrentTile.X);
 
-            return Move(direction);
+            return direction;
         }
 
         private MoveResult? Move(Direction? direction)

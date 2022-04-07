@@ -30,17 +30,13 @@ namespace TheseusAndTheMinotaur.Movement
                 return GetExhaustedMoveResult();
             }
 
+            ITile currentTile = Entity.CurrentTile;
             if (!CheckCanMoveToDirection(direction))
             {
                 return GetFailedMoveResult();
             }
 
-            ITile currentTile = Entity.CurrentTile;
-            if (!currentTile.ParentMap.TryGetNeighbourTile(
-                    currentTile, direction, out ITile newTile))
-            {
-                return GetFailedMoveResult();
-            }
+            ITile newTile = currentTile.ParentMap.GetNeighbourTile(currentTile, direction);
 
             OnMoveSuccessful(currentTile, newTile);
 
@@ -102,9 +98,12 @@ namespace TheseusAndTheMinotaur.Movement
                 MoveResultType.Exhausted);
         }
 
-        private bool CheckCanMoveToDirection(Direction direction)
+        public bool CheckCanMoveToDirection(Direction direction)
         {
-            bool result = !Entity.CurrentTile.CheckIsObstacleOfDirectionActive(direction);
+            ITile currentTile = Entity.CurrentTile;
+            bool result = !currentTile.CheckIsObstacleOfDirectionActive(direction) &&
+                          currentTile.ParentMap.CheckHasValidNeighbourTile(currentTile, direction);
+
             return result;
         }
     }

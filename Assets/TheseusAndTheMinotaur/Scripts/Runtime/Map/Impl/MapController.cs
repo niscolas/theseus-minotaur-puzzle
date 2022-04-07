@@ -10,6 +10,7 @@ namespace TheseusAndTheMinotaur.Map
         public int Height => _humbleObject.Height;
 
         public ITileFactory TileFactory => _humbleObject.TileFactory;
+        private float TileOffset => _humbleObject.TileOffset;
 
         private ITile[,] Tiles
         {
@@ -68,7 +69,7 @@ namespace TheseusAndTheMinotaur.Map
             {
                 for (int j = 0; j < Width; j++)
                 {
-                    Tiles[i, j] = TileFactory.Create(i, j, this);
+                    Tiles[i, j] = TileFactory.Create(i, j, this, TileOffset);
                 }
             }
         }

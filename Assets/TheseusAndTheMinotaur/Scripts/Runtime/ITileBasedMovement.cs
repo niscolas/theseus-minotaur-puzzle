@@ -7,5 +7,6 @@ namespace TheseusAndTheMinotaur
         event Action GotExhausted;
         void ResetMoveCount();
         MoveResult Move(Direction direction);
+        bool CheckCanMoveToDirection(Direction direction);
     }
 }
