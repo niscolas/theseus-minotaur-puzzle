@@ -23,6 +23,7 @@ namespace TheseusAndTheMinotaur.Theseus
         private bool _isTurnActive;
         private bool _isControllerTurnActive;
         private bool _reachedDestination;
+        private bool _isFirstTurn = true;
 
         private void Awake()
         {
@@ -68,6 +69,10 @@ namespace TheseusAndTheMinotaur.Theseus
         public void StartTurn()
         {
             _controller.StartTurn();
+            if (_isFirstTurn)
+            {
+                _targetPosition = Entity.CurrentTile.Position;
+            }
         }
 
         public MoveResult? Move(Direction direction)
@@ -116,6 +121,7 @@ namespace TheseusAndTheMinotaur.Theseus
             _isControllerTurnActive = false;
             _reachedDestination = true;
             _isTurnActive = false;
+            _isFirstTurn = false;
             TurnEnded?.Invoke();
         }
 

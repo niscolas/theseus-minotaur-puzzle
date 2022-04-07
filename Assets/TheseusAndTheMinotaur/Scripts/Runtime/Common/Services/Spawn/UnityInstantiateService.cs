@@ -11,7 +11,7 @@ namespace TheseusAndTheMinotaur.Common
 
         public T Spawn<T>(T component, Vector3 position, Quaternion rotation, Transform parent) where T : Component
         {
-            return Object.Instantiate(component, position, rotation, parent);
+           return Object.Instantiate(component, position, rotation, parent);
         }
     }
 }

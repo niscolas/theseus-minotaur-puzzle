@@ -19,6 +19,11 @@ namespace TheseusAndTheMinotaur.Map
             return puzzleLevelAsset;
         }
 
+        public string GetCurrentLevelComment()
+        {
+            return GetCurrent().DevComment;
+        }
+
         public bool CheckHasNextLevel()
         {
             bool result = _currentLevelIndex.Value < _levels.Length - 1;
@@ -29,6 +34,11 @@ namespace TheseusAndTheMinotaur.Map
         {
             bool result = _currentLevelIndex.Value >= 1;
             return result;
+        }
+
+        public int GetLevelCount()
+        {
+            return _levels.Length;
         }
     }
 }

@@ -1,11 +1,8 @@
-using System;
-using FluentAssertions.Common;
-using NSubstitute;
+using TheseusAndTheMinotaur.Common;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using Services = TheseusAndTheMinotaur.Common.Services;
 
 namespace TheseusAndTheMinotaur.Gameplay
 {
@@ -19,6 +16,12 @@ namespace TheseusAndTheMinotaur.Gameplay
 
         [SerializeField]
         private IntReference _currentLevel;
+        
+        [SerializeField]
+        private IntReference _levelCountOutput;
+
+        [SerializeField]
+        private StringReference _levelComment;
 
         private IMinotaurBehavior _minotaurBehavior;
         private ITheseusBehavior _theseusBehavior;
@@ -42,6 +45,8 @@ namespace TheseusAndTheMinotaur.Gameplay
             _theseusBehavior = GetComponentInChildren<ITheseusBehavior>();
             TryGetComponent(out _puzzleLevelAssetDatabase);
 
+            _levelComment.Value = _puzzleLevelAssetDatabase.GetCurrentLevelComment();
+            _levelCountOutput.Value = _puzzleLevelAssetDatabase.GetLevelCount();
             _minotaurBehavior.ArrivedAtTheseus += OnLevelLost;
             _theseusBehavior.ReachedLevelEnd += OnLevelFinished;
         }
